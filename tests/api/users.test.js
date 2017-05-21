@@ -25,3 +25,16 @@ test.cb('getUsers gets all users', function (t) {
     })
 })
 
+test.cb('getUser gets a single user', function (t) {
+  var expected = 'Generous Gila Monster'
+  request(app)
+    .get('/user/99907')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err
+      console.log(res.body.users)
+      t.is(res.body.users.length, expected)
+      t.end()
+    })
+})

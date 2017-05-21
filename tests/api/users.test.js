@@ -37,3 +37,19 @@ test.cb('getUser gets a single user', function (t) {
       t.end()
     })
 })
+
+test.cb('is addUser working?', function (t) {
+  var expected = 99927
+  let data = {name:'something', email:'something@email.com'}
+  request(app)
+    .post('/users/add')
+    .send({data})
+    .expect('Content-Type', /json/)
+    .expect(201)
+    .end(function (err, res) {
+      if (err) throw err
+      console.log(res.body);
+      t.is(res.body.user_id, expected)
+      t.end()
+    })
+})

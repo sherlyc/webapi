@@ -27,3 +27,16 @@ test('getUsers gets a single user', function (t) {
       t.is(actual, expected)
     })
 })
+
+test('insert user returns 27 users', function (t) {
+  var expected = 27
+  var data = {name: 'Posh Sherly', email: 'sherly@gg.com'}
+  return db.addUser(data, t.context.db)
+    .then(function (result) {
+        db.getUsers(t.context.db).then(function (results){
+          var actual = results.length
+          t.is(actual, expected)
+        })
+        
+    })
+})

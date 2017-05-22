@@ -52,3 +52,18 @@ test.cb('is addUser working?', function (t) {
       t.end()
     })
 })
+
+test.cb('is updateUser working?', function (t) {
+  var expected = 1
+  let data = {name:'OMG What', email:'gg@email.com'}
+  request(app)
+    .post('/users/update/99904')
+    .send({data})
+    .expect('Content-Type', /json/)
+    .expect(201)
+    .end(function (err, res) {
+      if (err) throw err
+      t.is(res.body.updated, expected)
+      t.end()
+    })
+})

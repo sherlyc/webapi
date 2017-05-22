@@ -33,10 +33,22 @@ test('insert user returns 27 users', function (t) {
   var data = {name: 'Posh Sherly', email: 'sherly@gg.com'}
   return db.addUser(data, t.context.db)
     .then(function (result) {
-        db.getUsers(t.context.db).then(function (results){
+          return db.getUsers(t.context.db).then(function (results){
           var actual = results.length
           t.is(actual, expected)
         })
-        
+    })
+})
+
+test('update user working?', function (t) {
+  var expected = 'OMG Dinosaur'
+  var data = {name: 'OMG Dinosaur', email: 'coolio@gmail.com'}
+  var id = 99904
+  return db.updateUser(id, data, t.context.db)
+    .then(function (result) {
+        return db.getUser(id, t.context.db).then(function (user) {
+        var actual = user[0].name
+        t.is(actual, expected)
+      })
     })
 })

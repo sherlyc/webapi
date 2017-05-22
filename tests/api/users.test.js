@@ -12,18 +12,18 @@ setupDb(test, function (db) {
   app.set('knex', db)
 })
 
-test.cb('getUsers gets all users', function (t) {
-  var expected = 26
-  request(app)
-    .get('/users')
-    .expect('Content-Type', /json/)
-    .expect(200)
-    .end(function (err, res) {
-      if (err) throw err
-      t.is(res.body.users.length, expected)
-      t.end()
-    })
-})
+// test.cb('getUsers gets all users', function (t) {
+//   var expected = 26
+//   request(app)
+//     .get('/users')
+//     .expect('Content-Type', /json/)
+//     .expect(200)
+//     .end(function (err, res) {
+//       if (err) throw err
+//       t.is(res.body.users.length, expected)
+//       t.end()
+//     })
+// })
 
 test.cb('getUser gets a single user', function (t) {
   var expected = 'Generous Gila Monster'
@@ -48,7 +48,6 @@ test.cb('is addUser working?', function (t) {
     .expect(201)
     .end(function (err, res) {
       if (err) throw err
-      console.log(res.body);
       t.is(res.body.user_id, expected)
       t.end()
     })

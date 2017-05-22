@@ -39,10 +39,10 @@ router.post('/add', function (req, res) {
 router.post('/update/:id', function (req, res) {
   let id = req.params.id
   let data = req.body.data
+
   db.updateUser(id, data, req.app.get('knex'))
     .then(function (result) {
-      console.log(result)
-      res.status(201).json({updated: result[0]})
+      res.status(201).json({updated: result})
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR:' + err.message)

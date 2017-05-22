@@ -6,6 +6,7 @@ var config = require('./knexfile')[environment]
 var knex = require('knex')(config)
 
 var users = require('./routes/users')
+var activities = require('./routes/activities')
 
 var server = express()
 
@@ -17,4 +18,4 @@ server.use(bodyParser.json())
 
 // Routes
 server.use('/users', users)
-
+server.use('/activities', activities)

@@ -24,7 +24,7 @@ router.get ('/:id', function (req, res) {
     })
 })
 
-router.post('/add', function (req, res) {
+router.post('/add', function (req, res) { //insert
   let data = req.body.data
   db.addUser(data, req.app.get('knex'))
     .then(function (result) {
@@ -36,7 +36,7 @@ router.post('/add', function (req, res) {
     })
 })
 
-router.post('/update/:id', function (req, res) {
+router.put('/:id', function (req, res) { //update
   let id = req.params.id
   let data = req.body.data
 

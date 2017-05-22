@@ -17,8 +17,20 @@ test.cb('getActivities gets all users activities', function (t) {
     .expect(200)
     .end(function (err, res) {
       if (err) throw err
-        t.is(res.body.activities.length, expected)
-        t.end()
+      t.is(res.body.activities.length, expected)
+      t.end()
     })
+})
 
+test.cb('delActivity removes one record', function (t) {
+  request(app)
+    .delete('/activities')
+    .expect('Content-Type', /json/)
+    .expect(204)
+    .end(function (err, res) {
+      if (err) throw err
+      return actual = db.getActivities.length
+      console.log(actual)
+      t.end()
+    })
 })

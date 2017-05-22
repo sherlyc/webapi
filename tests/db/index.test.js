@@ -52,3 +52,12 @@ test('update user working?', function (t) {
       })
     })
 })
+
+test('getActivities get all users activities', function (t) {
+  var expected = 26
+  return db.getActivities(t.context.db)
+    .then(function (result) {
+      var actual = result.length
+      t.is(actual, expected)
+    })
+})

@@ -61,3 +61,15 @@ test('getActivities get all users activities', function (t) {
       t.is(actual, expected)
     })
 })
+
+test('delete activities delete a user activity', function (t) {
+  let expected = 25
+  let id = 99926
+  return db.delActivity(id, t.context.db)
+    .then(function (result) {
+        return db.getActivities(t.context.db).then(function (results) {
+          var actual = results.length
+          t.is(actual, expected)
+        })
+    })
+})

@@ -3,7 +3,8 @@ module.exports = {
   getUsers: getUsers,
   addUser: addUser,
   updateUser: updateUser,
-  getActivities: getActivities
+  getActivities: getActivities,
+  delActivity
 }
 
 function getUsers (knex) {
@@ -27,4 +28,8 @@ function updateUser (id, data, knex) {
 
 function getActivities (knex) {
   return knex('activities')
+}
+
+function delActivity (id, knex) {
+  return knex('activities').where('user_id', id).del()
 }
